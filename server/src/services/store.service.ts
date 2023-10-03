@@ -18,4 +18,25 @@ export class StoreService {
     });
     return store;
   }
+  public async findStoreById(storeId: string, userId: string): Promise<Store> {
+    if (!userId) throw new HttpException(401, 'Unauthorized');
+    if (!storeId) {
+      throw new HttpException(400, 'StoreId Missing');
+    }
+    const store = await this.store.findFirst({
+      where: {
+        id: storeId,
+        userId,
+      },
+    });
+    return store;
+  }
+  public async findUserStores(userId: string): Promise<Store[]> {
+    const stores = await this.store.findMany({
+      where: {
+        userId,
+      },
+    });
+    return stores;
+  }
 }

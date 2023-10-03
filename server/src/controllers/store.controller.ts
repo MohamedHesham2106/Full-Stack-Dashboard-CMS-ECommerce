@@ -14,4 +14,23 @@ export class StoreController {
       next(error);
     }
   };
+  public getStoreById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const storeId = req.params.id;
+      const userId = String(req.query.userId);
+      const store: Store = await this.store.findStoreById(storeId, userId);
+      res.status(201).json({ data: store, message: 'store retrieved' });
+    } catch (error) {
+      next(error);
+    }
+  };
+  public getUserStores = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const userId = String(req.query.userId);
+      const stores: Store[] = await this.store.findUserStores(userId);
+      res.status(201).json({ data: stores, message: 'user stores retrieved' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }

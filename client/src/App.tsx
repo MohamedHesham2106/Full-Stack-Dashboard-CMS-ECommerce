@@ -13,6 +13,7 @@ import { ProtectedRoute } from "@/components/providers/protected-route-provider.
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { ToastProvider } from "@/components/providers/toast-provider";
 import { RootLayout } from "@/pages/(root)/layout";
+import { Settings } from "./pages/(dashboard)/settings";
 
 if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -62,12 +63,15 @@ const ClerkWithRoutes = () => {
             }
           />
           <Route
-            path="/:storeId"
+            path="/:storeId/*"
             element={
               <ProtectedRoute
                 Component={() => (
                   <DashboardLayout>
-                    <DashboardScreen />
+                    <Routes>
+                      <Route index element={<DashboardScreen />} />
+                      <Route path="settings" element={<Settings />} />
+                    </Routes>
                   </DashboardLayout>
                 )}
               />

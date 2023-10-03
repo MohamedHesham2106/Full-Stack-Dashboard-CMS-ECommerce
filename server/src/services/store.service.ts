@@ -5,11 +5,11 @@ import { HttpException } from '@exceptions/HttpException';
 @Service()
 export class StoreService {
   public store = new PrismaClient().store;
-  public async createStore(storeData: Store): Promise<Store> {
+  public async create(storeData: Store): Promise<Store> {
     const userId = String(storeData.userId);
     if (!userId) throw new HttpException(401, 'Unauthorized');
     const { name } = storeData;
-    if (!name) throw new HttpException(400, 'Missing store name');
+    if (!name) throw new HttpException(400, 'Store name is required.');
     const store = await this.store.create({
       data: {
         name,
@@ -18,10 +18,49 @@ export class StoreService {
     });
     return store;
   }
+  public async update(store: Store, storeId: string, userId: string): Promise<Store[]> {
+    if (!userId) throw new HttpException(401, 'Unauthorized');
+    const { name } = store;
+    if (!name) throw new HttpException(400, 'Name is required.');
+    if (!storeId) throw new HttpException(400, 'Store id is required.');
+    await this.store.updateMany({
+      where: {
+        id: storeId,
+        userId,
+      },
+      data: {
+        name,
+      },
+    });
+    const updatedStore = await this.store.findMany({
+      where: {
+        id: storeId,
+        userId,
+      },
+    });
+    return updatedStore;
+  }
+  public async delete(storeId: string, userId: string): Promise<Store[]> {
+    if (!userId) throw new HttpException(401, 'Unauthorized');
+    if (!storeId) throw new HttpException(400, 'Store id is required.');
+    await this.store.deleteMany({
+      where: {
+        id: storeId,
+        userId,
+      },
+    });
+    const stores = await this.store.findMany({
+      where: {
+        id: storeId,
+        userId,
+      },
+    });
+    return stores;
+  }
   public async findStoreById(storeId: string, userId: string): Promise<Store> {
     if (!userId) throw new HttpException(401, 'Unauthorized');
     if (!storeId) {
-      throw new HttpException(400, 'StoreId Missing');
+      throw new HttpException(400, 'Store id is required.');
     }
     const store = await this.store.findFirst({
       where: {

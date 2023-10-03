@@ -14,7 +14,9 @@ export class StoreRoute implements Routes {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}`, ValidationMiddleware(CreateStoreDto), this.store.createStore);
+    this.router.post(`${this.path}`, ValidationMiddleware(CreateStoreDto), this.store.create);
+    this.router.patch(`${this.path}/:id`, this.store.update);
+    this.router.delete(`${this.path}/:id`, this.store.delete);
     this.router.get(`${this.path}/:id`, this.store.getStoreById);
     this.router.get(`${this.path}`, this.store.getUserStores);
   }

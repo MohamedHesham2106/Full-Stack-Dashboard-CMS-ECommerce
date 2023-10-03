@@ -5,11 +5,32 @@ import { StoreService } from '@/services/store.service';
 
 export class StoreController {
   public store = Container.get(StoreService);
-  public createStore = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  public create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const storeData: Store = req.body;
-      const newStore: Store = await this.store.createStore(storeData);
+      const newStore: Store = await this.store.create(storeData);
       res.status(201).json({ data: newStore, message: 'store created' });
+    } catch (error) {
+      next(error);
+    }
+  };
+  public update = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const storeId = req.params.id;
+      const store: Store = req.body;
+      const userId = String(req.query.userId);
+      const updatedStore: Store[] = await this.store.update(store, storeId, userId);
+      res.status(201).json({ data: updatedStore, message: 'store updated' });
+    } catch (error) {
+      next(error);
+    }
+  };
+  public delete = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const storeId = req.params.id;
+      const userId = String(req.query.userId);
+      const updatedStore: Store[] = await this.store.delete(storeId, userId);
+      res.status(201).json({ data: updatedStore, message: 'store delete' });
     } catch (error) {
       next(error);
     }

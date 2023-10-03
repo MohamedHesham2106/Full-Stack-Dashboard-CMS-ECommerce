@@ -7,8 +7,14 @@ import { useModalStore } from "@/hooks/use-modal-store";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Check, ChevronsUpDown, PlusCircle, Store } from "lucide-react";
+import {
+  Check,
+  ChevronsUpDown,
+  PlusCircle,
+  Store as StoreIcon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Store } from "types";
 import {
   Command,
   CommandEmpty,
@@ -22,10 +28,7 @@ import {
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
-interface Store {
-  id: string;
-  name: string;
-}
+
 interface StoreSwitcherProps extends PopoverTriggerProps {
   items: Store[];
 }
@@ -60,7 +63,7 @@ export const StoreSwitcher = ({
           aria-label="Select a store"
           className={cn("w-[200px] justify-between", className)}
         >
-          <Store className="mr-2 h-4 w-4" />
+          <StoreIcon className="mr-2 h-4 w-4" />
           {currentStore?.label}
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -77,7 +80,7 @@ export const StoreSwitcher = ({
                   onSelect={() => onStoreSelect(item)}
                   className="text-sm cursor-pointer"
                 >
-                  <Store className="mr-2 h-4 w-4" />
+                  <StoreIcon className="mr-2 h-4 w-4" />
                   {item.label}
                   <Check
                     className={cn(

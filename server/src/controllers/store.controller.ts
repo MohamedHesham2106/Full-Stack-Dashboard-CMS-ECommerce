@@ -29,8 +29,8 @@ export class StoreController {
     try {
       const storeId = req.params.id;
       const userId = String(req.query.userId);
-      const updatedStore: Store[] = await this.store.delete(storeId, userId);
-      res.status(201).json({ data: updatedStore, message: 'store delete' });
+      const newStore: Store[] = await this.store.delete(storeId, userId);
+      res.status(201).json({ data: newStore, message: 'store deleted' });
     } catch (error) {
       next(error);
     }

@@ -11,6 +11,31 @@ export const MainNavigation = ({
   const params = useParams();
   const routes = [
     {
+      to: `/${params.storeId}`,
+      label: "Overview",
+      active: pathname === `/${params.storeId}`,
+    },
+    {
+      to: `/${params.storeId}/billboards`,
+      label: "Billboards",
+      active: pathname === `/${params.storeId}/billboards`,
+    },
+    {
+      to: `/${params.storeId}/categories`,
+      label: "Categories",
+      active: pathname === `/${params.storeId}/categories`,
+    },
+    {
+      to: `/${params.storeId}/sizes`,
+      label: "Sizes",
+      active: pathname === `/${params.storeId}/sizes`,
+    },
+    {
+      to: `/${params.storeId}/colors`,
+      label: "Colors",
+      active: pathname === `/${params.storeId}/colors`,
+    },
+    {
       to: `/${params.storeId}/settings`,
       label: "Settings",
       active: pathname === `/${params.storeId}/settings`,
@@ -25,7 +50,7 @@ export const MainNavigation = ({
           className={cn(
             "text-sm font-medium transition-colors hover:text-primary",
             route.active
-              ? "text-black dark:text-white "
+              ? "text-primary dark:text-white "
               : "text-muted-foreground"
           )}
         >

@@ -5,6 +5,7 @@ import { StoreSwitcher } from "@/components/store-switcher";
 import { redirect } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "@/lib/axios";
+import toast from "react-hot-toast";
 
 export const Navigation = () => {
   const { userId } = useAuth();
@@ -21,7 +22,7 @@ export const Navigation = () => {
       return response.data.data;
     } catch (error) {
       // Handle errors from the API request.
-      console.log("Something went wrong...");
+      toast.error("Something went wrong...");
     }
   });
   return (

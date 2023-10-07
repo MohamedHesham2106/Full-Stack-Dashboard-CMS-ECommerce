@@ -13,7 +13,15 @@ import { ProtectedRoute } from "@/components/providers/protected-route-provider.
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { ToastProvider } from "@/components/providers/toast-provider";
 import { RootLayout } from "@/pages/(root)/layout";
-import { Settings } from "./pages/(dashboard)/settings";
+import { Settings } from "@/pages/(dashboard)/settings";
+import { Billboards } from "@/pages/(dashboard)/billboards";
+import { Billboard } from "@/pages/(dashboard)/billboard";
+import { Categories } from "@/pages/(dashboard)/categories";
+import { Category } from "@/pages/(dashboard)/category";
+import { Size } from "@/pages/(dashboard)/size";
+import { Sizes } from "@/pages/(dashboard)/sizes";
+import { Colors } from "./pages/(dashboard)/colors";
+import { Color } from "./pages/(dashboard)/color";
 
 if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -71,6 +79,20 @@ const ClerkWithRoutes = () => {
                     <Routes>
                       <Route index element={<DashboardScreen />} />
                       <Route path="settings" element={<Settings />} />
+                      <Route path="billboards" element={<Billboards />} />
+                      <Route
+                        path="billboards/:billboardId"
+                        element={<Billboard />}
+                      />
+                      <Route path="categories" element={<Categories />} />
+                      <Route
+                        path="categories/:categoryId"
+                        element={<Category />}
+                      />
+                      <Route path="sizes" element={<Sizes />} />
+                      <Route path="sizes/:sizeId" element={<Size />} />
+                      <Route path="colors" element={<Colors />} />
+                      <Route path="colors/:colorId" element={<Color />} />
                     </Routes>
                   </DashboardLayout>
                 )}

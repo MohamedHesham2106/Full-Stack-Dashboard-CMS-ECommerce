@@ -2,12 +2,13 @@ import axiosInstance from "@/lib/axios";
 import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2, ServerCrash } from "lucide-react";
+import toast from "react-hot-toast";
 import { Navigate, redirect } from "react-router-dom";
 
 export const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const { userId } = useAuth();
 
-  const { data, status } = useQuery(["store"], async () => {
+  const { data, status } = useQuery(["store", userId], async () => {
     if (!userId) return redirect("/sign-in");
     try {
       const response = await axiosInstance.get("/store", {
@@ -19,7 +20,7 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
       return response.data.data;
     } catch (error) {
       // Handle errors from the API request.
-      console.log("Something went wrong...");
+      toast.error("Something went wrong...");
     }
   });
 

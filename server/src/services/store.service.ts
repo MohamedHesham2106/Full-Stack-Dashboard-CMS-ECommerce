@@ -7,7 +7,7 @@ export class StoreService {
   public store = new PrismaClient().store;
   public async create(storeData: Store): Promise<Store> {
     const userId = String(storeData.userId);
-    if (!userId) throw new HttpException(401, 'Unauthorized');
+    if (!userId) throw new HttpException(401, 'Unauthenticated');
     const { name } = storeData;
     if (!name) throw new HttpException(400, 'Store name is required.');
     const store = await this.store.create({
@@ -19,7 +19,7 @@ export class StoreService {
     return store;
   }
   public async update(store: Store, storeId: string, userId: string): Promise<Store[]> {
-    if (!userId) throw new HttpException(401, 'Unauthorized');
+    if (!userId) throw new HttpException(401, 'Unauthenticated');
     const { name } = store;
     if (!name) throw new HttpException(400, 'Name is required.');
     if (!storeId) throw new HttpException(400, 'Store id is required.');
@@ -41,7 +41,7 @@ export class StoreService {
     return updatedStore;
   }
   public async delete(storeId: string, userId: string): Promise<Store[]> {
-    if (!userId) throw new HttpException(401, 'Unauthorized');
+    if (!userId) throw new HttpException(401, 'Unauthenticated.');
     if (!storeId) throw new HttpException(400, 'Store id is required.');
     await this.store.deleteMany({
       where: {
@@ -58,7 +58,7 @@ export class StoreService {
     return stores;
   }
   public async findStoreById(storeId: string, userId: string): Promise<Store> {
-    if (!userId) throw new HttpException(401, 'Unauthorized');
+    if (!userId) throw new HttpException(401, 'Unauthenticated');
     if (!storeId) {
       throw new HttpException(400, 'Store id is required.');
     }

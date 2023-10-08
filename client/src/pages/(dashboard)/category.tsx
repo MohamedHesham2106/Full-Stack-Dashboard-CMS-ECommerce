@@ -16,7 +16,7 @@ export const Category = () => {
           }
 
           const response = await axiosInstance.get(`/categories/${categoryId}`);
-          console.log(response.data.data);
+
           return response.data.data;
         },
       },
@@ -28,7 +28,7 @@ export const Category = () => {
               storeId,
             },
           });
-          console.log(response.data.data);
+
           return response.data.data;
         },
       },

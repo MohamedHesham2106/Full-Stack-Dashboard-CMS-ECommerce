@@ -3,7 +3,7 @@ import { CellAction } from "./cell-actions";
 
 export type CategoryColumn = {
   id: string;
-  name: number;
+  name: string;
   billboardLabel?: string;
   createdAt: string;
 };

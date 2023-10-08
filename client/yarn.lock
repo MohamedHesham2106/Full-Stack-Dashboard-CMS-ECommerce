@@ -530,6 +530,21 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.3"
 
+"@radix-ui/react-checkbox@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-checkbox/-/react-checkbox-1.0.4.tgz#98f22c38d5010dd6df4c5744cac74087e3275f4b"
+  integrity sha512-CBuGQa52aAYnADZVt/KBQzXrwx6TqnlwtcIPGtVt5JkkzQwMOLJjPukimhfKEr4GQNd43C+djUh5Ikopj8pSLg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.1"
+    "@radix-ui/react-compose-refs" "1.0.1"
+    "@radix-ui/react-context" "1.0.1"
+    "@radix-ui/react-presence" "1.0.1"
+    "@radix-ui/react-primitive" "1.0.3"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@radix-ui/react-use-previous" "1.0.1"
+    "@radix-ui/react-use-size" "1.0.1"
+
 "@radix-ui/react-collection@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-collection/-/react-collection-1.0.3.tgz#9595a66e09026187524a36c6e7e9c7d286469159"
@@ -2380,6 +2395,11 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+react-cloudinary-uploader@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-cloudinary-uploader/-/react-cloudinary-uploader-1.1.2.tgz#91932d13aef4e3c126e81e47c8302ae05058b78e"
+  integrity sha512-zpa3rykX9TMUR0/UOKK1eEVo80cWAedDHgnyRrU29IwgjtqkPAUriEc+sOhgGNVR06V7HIAu4duj8DyhYJ6lNg==
 
 react-dom@^18.2.0:
   version "18.2.0"

@@ -18,11 +18,17 @@ import {
   CategoryColumn,
   SizeColumn,
   ColorColumn,
+  ProductColumn,
 } from "./columns";
 
 interface CellActionProps {
-  data: BillboardColumn | CategoryColumn | SizeColumn | ColorColumn;
-  type: "billboard" | "category" | "sizes" | "colors";
+  data:
+    | BillboardColumn
+    | CategoryColumn
+    | SizeColumn
+    | ColorColumn
+    | ProductColumn;
+  type: "billboard" | "category" | "sizes" | "colors" | "products";
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
@@ -55,9 +61,14 @@ export const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
       route: "colors",
       toastMessage: "Handle the color-specific condition here.",
     },
+    products: {
+      dataType: "Product",
+      route: "products",
+      toastMessage: "Handle the product-specific condition here.",
+    },
   };
 
-  const { dataType, route, toastMessage } = typeInfo[type]; 
+  const { dataType, route, toastMessage } = typeInfo[type];
 
   const copyHandler = (id: string) => {
     navigator.clipboard.writeText(id);

@@ -22,6 +22,8 @@ import { Size } from "@/pages/(dashboard)/size";
 import { Sizes } from "@/pages/(dashboard)/sizes";
 import { Colors } from "./pages/(dashboard)/colors";
 import { Color } from "./pages/(dashboard)/color";
+import { Products } from "./pages/(dashboard)/products";
+import { Product } from "./pages/(dashboard)/product";
 
 if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -93,6 +95,8 @@ const ClerkWithRoutes = () => {
                       <Route path="sizes/:sizeId" element={<Size />} />
                       <Route path="colors" element={<Colors />} />
                       <Route path="colors/:colorId" element={<Color />} />
+                      <Route path="products" element={<Products />} />
+                      <Route path="products/:productId" element={<Product />} />
                     </Routes>
                   </DashboardLayout>
                 )}

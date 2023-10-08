@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { CldUploadWidget } from "../cld-upload.widget";
 import { Button } from "./button";
-import { Trash } from "lucide-react";
+import { ImagePlus, Trash } from "lucide-react";
+import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
 
 interface ImageUploadProps {
   disabled?: boolean;
-  onChange: (value: string) => void;
+  onChange: (values: string) => void;
   onRemove: (value: string) => void;
   value: string[];
 }
@@ -23,15 +23,20 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onUpload = (result: any) => {
-    console.log("ALO", result);
-    onChange(result?.info?.secure_url);
+    const secureUrl = result?.secure_url;
+    if (secureUrl) {
+      // Create a new array of image objects by combining the existing images and the newly uploaded image
+
+      onChange(secureUrl);
+    }
   };
   if (!isMounted) {
     return null;
   }
+
   return (
     <div>
-      <div className=" mb-4 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-4">
         {value.map((url) => (
           <div
             key={url}
@@ -55,7 +60,23 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
           </div>
         ))}
       </div>
-      <CldUploadWidget disabled={disabled} onUpload={onUpload} />
+      <CloudinaryUploadWidget
+        cloudName={import.meta.env.VITE_CLOUDINARY_NAME}
+        uploadPreset={import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET}
+        onUploadSuccess={onUpload}
+        options={{
+          clientAllowedFormats: ["png", "jpeg", "jpg"],
+          resourceType: "image",
+          folder: "images",
+          sources: ["local", "url", "camera", "google_drive"],
+          multiple: false,
+        }}
+      >
+        <Button type="button" disabled={disabled} variant="secondary">
+          <ImagePlus className="h-4 w-4 mr-2" />
+          Upload an Image
+        </Button>
+      </CloudinaryUploadWidget>
     </div>
   );
 };

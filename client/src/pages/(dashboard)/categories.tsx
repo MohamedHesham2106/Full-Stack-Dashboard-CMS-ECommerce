@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import { CategoryColumn } from "@/components/billboard/category-columns";
-import { Category } from "types";
+import { Categories as Category } from "types";
 import { CategoryClient } from "@/components/billboard/category-client";
 
 export const Categories = () => {

@@ -110,7 +110,6 @@ export class BillboardService {
     });
     const billboards = await this.billboard.findMany({
       where: {
-        id: storeId,
         storeId,
       },
     });

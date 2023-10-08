@@ -6,9 +6,10 @@ import { BillboardRoute } from './routes/billboard.route';
 import { CategoryRoute } from './routes/category.route';
 import { SizeRoute } from './routes/size.route';
 import { ColorRoute } from './routes/color.route';
+import { ProductRoute } from './routes/product.route';
 
 ValidateEnv();
 
-const app = new App([new StoreRoute(), new BillboardRoute(), new CategoryRoute(), new SizeRoute(), new ColorRoute()]);
+const app = new App([new StoreRoute(), new BillboardRoute(), new CategoryRoute(), new SizeRoute(), new ColorRoute(), new ProductRoute()]);
 
 app.listen();

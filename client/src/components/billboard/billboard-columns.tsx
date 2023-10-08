@@ -3,7 +3,7 @@ import { CellAction } from "./cell-actions";
 
 export type BillboardColumn = {
   id: string;
-  label: number;
+  label: string;
   createdAt: string;
 };
 

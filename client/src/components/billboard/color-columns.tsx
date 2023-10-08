@@ -3,7 +3,7 @@ import { CellAction } from "./cell-actions";
 
 export type ColorColumn = {
   id: string;
-  name: number;
+  name: string;
   value: string;
   createdAt: string;
 };

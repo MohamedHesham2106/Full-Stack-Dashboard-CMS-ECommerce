@@ -3,7 +3,7 @@ import axiosInstance from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-export const Size = () => {
+export const SizeScreen = () => {
   const { sizeId } = useParams();
   const { data: size, isLoading } = useQuery(
     ["size", sizeId],

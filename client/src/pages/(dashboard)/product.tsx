@@ -3,7 +3,7 @@ import axiosInstance from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-export const Product = () => {
+export const ProductScreen = () => {
   const { productId, storeId } = useParams();
 
   // Define individual queries

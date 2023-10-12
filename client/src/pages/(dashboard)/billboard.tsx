@@ -3,7 +3,7 @@ import axiosInstance from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-export const Billboard = () => {
+export const BillboardScreen = () => {
   const { billboardId } = useParams();
   const { data: billboard, isLoading } = useQuery(
     ["billboard", billboardId],

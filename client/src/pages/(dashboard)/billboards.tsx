@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 
-export const Billboards = () => {
+export const BillboardsScreen = () => {
   const { storeId } = useParams();
   const { data: billboards, status } = useQuery(
     ["billboards", storeId],

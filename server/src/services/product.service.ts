@@ -63,6 +63,7 @@ export class ProductService {
           category: true,
           size: true,
           color: true,
+          images: true,
         },
         orderBy: {
           createdAt: 'desc',

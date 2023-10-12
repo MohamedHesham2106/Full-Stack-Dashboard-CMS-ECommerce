@@ -12,6 +12,9 @@ export class CategoryService {
       where: {
         id: categoryId,
       },
+      include: {
+        billboard: true,
+      },
     });
     return category;
   }
@@ -23,6 +26,7 @@ export class CategoryService {
       },
       include: {
         billboard: true,
+        store: true,
       },
       orderBy: {
         createdAt: 'desc',

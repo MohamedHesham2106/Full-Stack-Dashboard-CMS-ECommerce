@@ -7,9 +7,20 @@ import { CategoryRoute } from './routes/category.route';
 import { SizeRoute } from './routes/size.route';
 import { ColorRoute } from './routes/color.route';
 import { ProductRoute } from './routes/product.route';
+import { OrderRoute } from './routes/order.route';
+import { WebhookRoute } from './routes/webhook.route';
 
 ValidateEnv();
 
-const app = new App([new StoreRoute(), new BillboardRoute(), new CategoryRoute(), new SizeRoute(), new ColorRoute(), new ProductRoute()]);
+const app = new App([
+  new StoreRoute(),
+  new BillboardRoute(),
+  new CategoryRoute(),
+  new SizeRoute(),
+  new ColorRoute(),
+  new ProductRoute(),
+  new OrderRoute(),
+  new WebhookRoute(),
+]);
 
 app.listen();

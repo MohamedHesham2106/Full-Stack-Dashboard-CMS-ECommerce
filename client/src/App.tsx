@@ -7,23 +7,26 @@ import { neobrutalism } from "@clerk/themes";
 import { HomeScreen } from "@/pages/(root)/index.tsx";
 import { LoginScreen } from "@/pages/(auth)/LoginScreen.tsx";
 import { RegisterScreen } from "@/pages/(auth)/RegisterScreen.tsx";
-import { DashboardScreen } from "@/pages/(dashboard)";
+import { DashboardScreen } from "@/pages/(dashboard)/dashboard";
 import { DashboardLayout } from "@/pages/(dashboard)/layout";
 import { ProtectedRoute } from "@/components/providers/protected-route-provider.tsx";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { ToastProvider } from "@/components/providers/toast-provider";
 import { RootLayout } from "@/pages/(root)/layout";
-import { Settings } from "@/pages/(dashboard)/settings";
-import { Billboards } from "@/pages/(dashboard)/billboards";
-import { Billboard } from "@/pages/(dashboard)/billboard";
-import { Categories } from "@/pages/(dashboard)/categories";
-import { Category } from "@/pages/(dashboard)/category";
-import { Size } from "@/pages/(dashboard)/size";
-import { Sizes } from "@/pages/(dashboard)/sizes";
-import { Colors } from "./pages/(dashboard)/colors";
-import { Color } from "./pages/(dashboard)/color";
-import { Products } from "./pages/(dashboard)/products";
-import { Product } from "./pages/(dashboard)/product";
+import {
+  BillboardScreen,
+  BillboardsScreen,
+  CategoriesScreen,
+  CategoryScreen,
+  ColorScreen,
+  ColorsScreen,
+  OrdersScreen,
+  ProductScreen,
+  ProductsScreen,
+  SettingsScreen,
+  SizeScreen,
+  SizesScreen,
+} from "@/pages/(dashboard)/index";
 
 if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -80,23 +83,27 @@ const ClerkWithRoutes = () => {
                   <DashboardLayout>
                     <Routes>
                       <Route index element={<DashboardScreen />} />
-                      <Route path="settings" element={<Settings />} />
-                      <Route path="billboards" element={<Billboards />} />
+                      <Route path="settings" element={<SettingsScreen />} />
+                      <Route path="billboards" element={<BillboardsScreen />} />
                       <Route
                         path="billboards/:billboardId"
-                        element={<Billboard />}
+                        element={<BillboardScreen />}
                       />
-                      <Route path="categories" element={<Categories />} />
+                      <Route path="categories" element={<CategoriesScreen />} />
                       <Route
                         path="categories/:categoryId"
-                        element={<Category />}
+                        element={<CategoryScreen />}
                       />
-                      <Route path="sizes" element={<Sizes />} />
-                      <Route path="sizes/:sizeId" element={<Size />} />
-                      <Route path="colors" element={<Colors />} />
-                      <Route path="colors/:colorId" element={<Color />} />
-                      <Route path="products" element={<Products />} />
-                      <Route path="products/:productId" element={<Product />} />
+                      <Route path="sizes" element={<SizesScreen />} />
+                      <Route path="sizes/:sizeId" element={<SizeScreen />} />
+                      <Route path="colors" element={<ColorsScreen />} />
+                      <Route path="colors/:colorId" element={<ColorScreen />} />
+                      <Route path="products" element={<ProductsScreen />} />
+                      <Route
+                        path="products/:productId"
+                        element={<ProductScreen />}
+                      />
+                      <Route path="orders" element={<OrdersScreen />} />
                     </Routes>
                   </DashboardLayout>
                 )}

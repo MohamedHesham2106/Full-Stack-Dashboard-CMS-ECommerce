@@ -3,7 +3,7 @@ import axiosInstance from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-export const Color = () => {
+export const ColorScreen = () => {
   const { colorId } = useParams();
   const { data: color, isLoading } = useQuery(
     ["color", colorId],

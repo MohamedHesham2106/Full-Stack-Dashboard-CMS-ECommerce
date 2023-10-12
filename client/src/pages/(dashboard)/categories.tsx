@@ -6,7 +6,7 @@ import { CategoryColumn } from "@/components/billboard/category-columns";
 import { Categories as Category } from "types";
 import { CategoryClient } from "@/components/billboard/category-client";
 
-export const Categories = () => {
+export const CategoriesScreen = () => {
   const { storeId } = useParams();
   const { data: categories, isLoading } = useQuery(
     ["categories", storeId],

@@ -44,3 +44,18 @@ export interface Image {
   id: string;
   url: string;
 }
+export interface Order {
+  id: string;
+  storeId: string;
+  isPaid: boolean;
+  phone: string;
+  orderItems: OrderItem[];
+  address: string;
+  createdAt: string;
+}
+export interface OrderItem {
+  id: string;
+  orderId: string;
+  productId: string;
+  product: Product;
+}

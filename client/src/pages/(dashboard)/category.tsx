@@ -3,7 +3,7 @@ import axiosInstance from "@/lib/axios";
 import { useQueries } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-export const Category = () => {
+export const CategoryScreen = () => {
   const { categoryId, storeId } = useParams();
   const result = useQueries({
     queries: [

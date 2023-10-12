@@ -43,7 +43,13 @@ export class App {
     this.app.use(cors({ origin: ORIGIN, credentials: CREDENTIALS }));
     this.app.use(helmet());
     this.app.use(compression());
-    this.app.use(express.json());
+    this.app.use((req, res, next) => {
+      if (req.originalUrl === '/webhook') {
+        next();
+      } else {
+        express.json()(req, res, next);
+      }
+    });
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(compression({ filter: compressFilter }));
   }

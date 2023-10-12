@@ -4,7 +4,7 @@ import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate, redirect, useParams } from "react-router-dom";
 
-export const Settings = () => {
+export const SettingsScreen = () => {
   const { storeId } = useParams();
   const { userId } = useAuth();
 

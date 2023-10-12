@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import { SizeClient } from "@/components/billboard/size-client";
 
-export const Sizes = () => {
+export const SizesScreen = () => {
   const { storeId } = useParams();
   const { data: sizes, status } = useQuery(["sizes", storeId], async () => {
     const response = await axiosInstance.get("/sizes", {

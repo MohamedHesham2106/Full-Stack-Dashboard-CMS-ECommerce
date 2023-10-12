@@ -1,18 +1,27 @@
-import axiosInstance from "@/lib/axios";
-import { useAuth } from "@clerk/clerk-react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { SettingsScreen } from "@/pages/(dashboard)/settings";
+import { BillboardsScreen } from "@/pages/(dashboard)/billboards";
+import { BillboardScreen } from "@/pages/(dashboard)/billboard";
+import { CategoriesScreen } from "@/pages/(dashboard)/categories";
+import { CategoryScreen } from "@/pages/(dashboard)/category";
+import { SizeScreen } from "@/pages/(dashboard)/size";
+import { SizesScreen } from "@/pages/(dashboard)/sizes";
+import { ColorsScreen } from "@/pages/(dashboard)/colors";
+import { ColorScreen } from "@/pages/(dashboard)/color";
+import { ProductsScreen } from "@/pages/(dashboard)/products";
+import { ProductScreen } from "@/pages/(dashboard)/product";
+import { OrdersScreen } from "@/pages/(dashboard)/orders";
 
-export const DashboardScreen: React.FC = () => {
-  const { storeId } = useParams();
-  const { userId } = useAuth();
-  const { data } = useQuery(["store", storeId], async () => {
-    const response = await axiosInstance.get(`/store/${storeId}`, {
-      params: {
-        userId,
-      },
-    });
-    return response.data.data;
-  });
-  return <div>{data?.name}</div>;
+export {
+  SettingsScreen,
+  BillboardScreen,
+  BillboardsScreen,
+  CategoriesScreen,
+  CategoryScreen,
+  SizeScreen,
+  SizesScreen,
+  ColorsScreen,
+  ColorScreen,
+  ProductsScreen,
+  ProductScreen,
+  OrdersScreen,
 };

@@ -9,7 +9,7 @@ import { ProductColumn } from "@/components/billboard/product-columns";
 import { Product } from "types";
 import { useAuth } from "@clerk/clerk-react";
 
-export const Products = () => {
+export const ProductsScreen = () => {
   const { storeId } = useParams();
   const { userId } = useAuth();
   const { data: products, status } = useQuery(

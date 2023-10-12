@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { ColorColumn } from "@/components/billboard/color-columns";
 import { ColorClient } from "@/components/billboard/color-client";
 
-export const Colors = () => {
+export const ColorsScreen = () => {
   const { storeId } = useParams();
   const { data: colors, status } = useQuery(["colors", storeId], async () => {
     const response = await axiosInstance.get("/colors", {

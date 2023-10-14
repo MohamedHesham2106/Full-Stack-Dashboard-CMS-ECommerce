@@ -29,8 +29,13 @@ This Full Stack Ecommerce CMS is a comprehensive web application that empowers u
 - [Clerk-React](https://clerk.com/): Ensures secure and efficient user authentication.
 
 ### Back-End
+- Express.js
+- Stripe
+- Prisma ORM
+#### Architetcure
 - RESTful API: Utilized for communication between the front-end and back-end components.
 - Object-Oriented Programming (OOP) principles: Ensuring well-structured and maintainable code.
+
 
 ### Cloud Services
 - [Cloudinary](https://cloudinary.com/): Seamlessly handles image uploads and management.

@@ -29,9 +29,18 @@ export class ProductService {
     colorId?: string,
     sizeId?: string,
     isFeatured?: string,
-  ): Promise<Product[]> {
+    count = false,
+  ): Promise<Product[] | number> {
     if (!storeId) throw new HttpException(400, 'Store id is required.');
-
+    if (count) {
+      const stockCount = await this.product.count({
+        where: {
+          storeId,
+          isArchived: false,
+        },
+      });
+      return stockCount;
+    }
     const whereClause: {
       storeId: string;
       categoryId?: string;

@@ -15,7 +15,7 @@ const textMap: Record<ApiAlertProps["variant"], string> = {
 };
 const variantMap: Record<ApiAlertProps["variant"], BadgeProps["variant"]> = {
   public: "secondary",
-  admin: "destructive",
+  admin: "default",
 };
 
 export const ApiAlert: React.FC<ApiAlertProps> = ({
@@ -28,14 +28,14 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({
     toast.success("API Route Copied to Clipboard");
   };
   return (
-    <Alert className="overflow-auto">
+    <Alert className="overflow-auto dark:bg-zinc-800">
       <Server className="w-4 h-4" />
       <AlertTitle className="flex items-center gap-x-2">
         {title}
         <Badge variant={variantMap[variant]}>{textMap[variant]}</Badge>
       </AlertTitle>
       <AlertDescription className="mt-4 flex items-center justify-between">
-        <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+        <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold dark:bg-black">
           {description}
         </code>
         <Button variant={"outline"} size={"icon"} onClick={copyHandler}>

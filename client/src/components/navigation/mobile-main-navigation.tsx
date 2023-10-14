@@ -1,12 +1,8 @@
-import { Link, useLocation, useParams } from "react-router-dom";
-
 import { cn } from "@/lib/utils";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { Button } from "../ui/button";
 
-export const MainNavigation = ({
-  className,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ...props
-}: React.HTMLAttributes<HTMLElement>) => {
+export const MobileMainNavigation = () => {
   const { pathname } = useLocation();
   const params = useParams();
   const routes = [
@@ -52,19 +48,24 @@ export const MainNavigation = ({
     },
   ];
   return (
-    <nav className={cn("lg:flex items-center space-x-4 lg:space-x-6 hidden", className)}>
+    <nav className={"flex flex-col items-center space-y-4 mt-5"}>
       {routes.map((route) => (
         <Link
           to={route.to}
           key={route.to}
-          className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            route.active
-              ? "text-primary dark:text-white "
-              : "text-muted-foreground"
-          )}
+          className={" w-full transition-colors hover:text-primary"}
         >
-          {route.label}
+          <Button
+            className={cn(
+              "w-full font-medium text-lg p-6",
+              route.active
+                ? "text-primary dark:text-primary"
+                : "text-muted-foreground"
+            )}
+            variant="ghost"
+          >
+            {route.label}
+          </Button>
         </Link>
       ))}
     </nav>

@@ -8,8 +8,8 @@ export class ProductController {
   public getProductById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const productId = req.params.id;
-
       const product = await this.product.getProductById(productId);
+
       res.status(201).json({ data: product, message: 'product retrieved' });
     } catch (error) {
       next(error);
@@ -21,9 +21,12 @@ export class ProductController {
       const colorId = req.query.colorId !== undefined ? String(req.query.colorId) : undefined;
       const sizeId = req.query.sizeId !== undefined ? String(req.query.sizeId) : undefined;
       const isFeatured = req.query.isFeatured !== undefined ? String(req.query.isFeatured) : undefined;
+      const count = Boolean(req.query.count);
       const storeId = String(req.query.storeId);
       const userId = String(req.query.userId);
-      const products: Product[] = await this.product.getProducts(storeId, userId, categoryId, colorId, sizeId, isFeatured);
+
+      const products: Product[] | number = await this.product.getProducts(storeId, userId, categoryId, colorId, sizeId, isFeatured, count);
+
       res.status(201).json({ data: products, message: 'products retrieved' });
     } catch (error) {
       next(error);

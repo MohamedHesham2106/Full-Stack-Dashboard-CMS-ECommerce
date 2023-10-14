@@ -4,17 +4,33 @@ import { HttpException } from '@exceptions/HttpException';
 import Stripe from 'stripe';
 import { stripe } from '@/utils/stripe';
 import { FRONTEND_URL } from '@/config';
+
+export interface GraphData {
+  name: string;
+  total: number;
+}
+
 @Service()
 export class OrderService {
   public order = new PrismaClient().order;
   public store = new PrismaClient().store;
   public products = new PrismaClient().product;
 
-  public async getOrders(storeId: string): Promise<Order[]> {
+  public async getOrders(storeId: string, paidOrders = false, count = false, graph = false): Promise<Order[] | number | GraphData[]> {
     if (!storeId) throw new HttpException(400, 'Store id is required.');
-    const billboards = await this.order.findMany({
+    if (count && paidOrders) {
+      const count = await this.order.count({
+        where: {
+          storeId,
+          isPaid: true,
+        },
+      });
+      return count;
+    }
+    const orders = await this.order.findMany({
       where: {
         storeId,
+        isPaid: paidOrders,
       },
       include: {
         orderItems: {
@@ -27,7 +43,72 @@ export class OrderService {
         createdAt: 'desc',
       },
     });
-    return billboards;
+    if (graph) {
+      const monthyRevenume: { [key: number]: number } = {};
+      for (const order of orders) {
+        const month = order.createdAt.getMonth();
+        let revenueForOrder = 0;
+        for (const item of order.orderItems) {
+          revenueForOrder += Number(item.product.price);
+        }
+        monthyRevenume[month] = (monthyRevenume[month] || 0) + revenueForOrder;
+      }
+      const graphData: GraphData[] = [
+        {
+          name: 'Jan',
+          total: 0,
+        },
+        {
+          name: 'Feb',
+          total: 0,
+        },
+        {
+          name: 'Mar',
+          total: 0,
+        },
+        {
+          name: 'Apr',
+          total: 0,
+        },
+        {
+          name: 'May',
+          total: 0,
+        },
+        {
+          name: 'Jun',
+          total: 0,
+        },
+        {
+          name: 'Jul',
+          total: 0,
+        },
+        {
+          name: 'Aug',
+          total: 0,
+        },
+        {
+          name: 'Sep',
+          total: 0,
+        },
+        {
+          name: 'Oct',
+          total: 0,
+        },
+        {
+          name: 'Nov',
+          total: 0,
+        },
+        {
+          name: 'Dec',
+          total: 0,
+        },
+      ];
+      for (const month in monthyRevenume) {
+        graphData[parseInt(month)].total = monthyRevenume[parseInt(month)];
+      }
+      return graphData;
+    }
+    return orders;
   }
 
   public async checkout(storeId: string, productIds: string[]) {

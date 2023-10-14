@@ -70,6 +70,44 @@ To set up and run the Full Stack Ecommerce CMS on your local development environ
    ```
 ## Access the Store Front
 You can see the Ecommerce Store Front powered by this CMS by clicking [here](https://github.com/MohamedHesham2106/Ecommerce-store).
+
+## Environment Variables:
+  ```bash
+##Frontend
+VITE_CLERK_PUBLISHABLE_KEY=
+VITE_PUBLIC_API_URL=
+VITE_CLOUDINARY_NAME=
+VITE_CLOUDINARY_UPLOAD_PRESET=
+
+---------------------------------------
+
+##Backend
+PORT = 
+
+# DATABASE
+
+DATABASE_URL= "mongodb+srv://<username>:<password>@cluster0.wmbe2mn.mongodb.net/?retryWrites=true&w=majority"
+
+# TOKEN
+SECRET_KEY =
+
+
+# LOG
+LOG_FORMAT = dev
+LOG_DIR = ../logs
+
+# CORS
+ORIGIN = *
+CREDENTIALS = true
+
+
+# STRIPE
+STRIPE_API_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+# FRONTEND STORE URL
+FRONTEND_URL=
+ ```
 ## Screenshots
 ![image](https://github.com/MohamedHesham2106/Full-Stack-Dashboard-CMS-ECommerce/assets/102517583/4e7f36be-7974-4b91-ae4d-d0ffecb43e3a)
 ![image](https://github.com/MohamedHesham2106/Full-Stack-Dashboard-CMS-ECommerce/assets/102517583/fcaffecf-a2e0-4e5c-ae07-72047edcb6fa)
